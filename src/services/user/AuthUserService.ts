@@ -11,9 +11,6 @@ interface AuthUserRequest {
 class AuthUserService {
   async execute({ email, password }: AuthUserRequest) {
 
-    console.log("Email", email, password)
-
-
     const user = await prismaClient.user.findFirst({
       where: { email: email }, include: { subscriptions: true }
     })
