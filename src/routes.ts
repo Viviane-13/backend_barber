@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { CheckSubscriptionController } from './controllers/haircut/CheckSubscriptionController';
 import { CreateHaircutController } from './controllers/haircut/CreateHaircutController';
 import { ListHaircutController } from './controllers/haircut/ListHaircutController';
 import { UpdateHaircutController } from './controllers/haircut/UpdateHaircutController';
@@ -7,7 +8,6 @@ import { CreateUserController } from './controllers/user/CreateUserController';
 import { DetailUserController } from './controllers/user/DetailUserController';
 import { UpdateUserController } from './controllers/user/UpdateUserController';
 import { isAuthenticated } from './middlewares/isAuthenticated';
-
 
 const router = Router()
 
@@ -23,7 +23,6 @@ router.put('/users', isAuthenticated, new UpdateUserController().handle);
 router.post('/haircut', isAuthenticated, new CreateHaircutController().handle);
 router.get('/haircuts', isAuthenticated, new ListHaircutController().handle);
 router.put('/haircut', isAuthenticated, new UpdateHaircutController().handle);
-
-
+router.get('/haircut/check', isAuthenticated, new CheckSubscriptionController().handle)
 
 export { router }
